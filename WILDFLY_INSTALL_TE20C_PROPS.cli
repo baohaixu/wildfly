@@ -1,0 +1,8 @@
+connect
+/system-property=RHEFOSDSUSR:add(value="appl")
+/system-property=RHEFOSDSPWD:add(value="appl")
+/system-property=RHEFOSDSURL:add(value="jdbc:oracle:thin:@172.22.18.53:1521:TE20C")
+/system-property=TESTFALLDSUSR:add(value="appl")
+/system-property=TESTFALLDSPWD:add(value="appl")
+/system-property=TESTFALLDSURL:add(value="jdbc:oracle:thin:@172.22.18.53:1521:TE20C")
+/system-property=jboss.socket.binding.port-offset:add(value=200)
