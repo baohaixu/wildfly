@@ -1,0 +1,28 @@
+Voraussetzungen:
+
+- WILDFLY_HOME ist gesetzt
+
+- $WILDFLY_HOME/bin ist im $PATH
+
+- ./wildfly zeigt auf $WILDFLY_HOME
+
+- Aktuelles Verezichnis ist $WILDFLY_HOME/..
+
+- Der jdbc-Treiber sowie die beiden war-File liegen im aktuellen Verzeichnis
+
+Vorbereitung:
+
+- WILDFLY_INSTALL_TE20C_PROPS.cli ist fertig-
+
+- In WILDFLY_INSTALL_SE20B_PROPS.cli muss das Passwort von appl eingesetzt werden, das wir nicht kennen.
+
+- der Server wird gestartet
+
+Customizing:
+
+für Test:
+install.bash WILDFLY_INSTALL_TE20C_PROPS.cli
+
+für SYSTEST2:
+install.bash WILDFLY_INSTALL_SE20B_PROPS.cli
+
