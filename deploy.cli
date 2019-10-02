@@ -1,0 +1,3 @@
+connect
+deploy produktserver.war
+deploy testfallQMdb.war
