@@ -1,0 +1,19 @@
+connect
+batch
+data-source add --name=ORACLEDS --jndi-name=java:/ORACLEDS --driver-class=oracle.jdbc.driver.OracleDriver --driver-name=ojdbc8  --connection-url=${RHEFOSDSURL} --user-name=${RHEFOSDSUSR} --password=${RHEFOSDSPWD}
+data-source add --name=TESTFALLDS --jndi-name=java:/TESTFALLDS --driver-class=oracle.jdbc.driver.OracleDriver --driver-name=ojdbc8  --connection-url=${TESTFALLDSURL} --user-name=${TESTFALLDSUSR} --password=${TESTFALLDSPWD}
+jms-queue add --queue-address=TestQ --durable=true --entries=queue/TestQ,java:jboss/exported/jms/queue/TestQ
+jms-queue add --queue-address=NachtestQ --durable=true --entries=queue/NachtestQ,java:jboss/exported/jms/queue/NachtestQ
+/interface=public/:write-attribute(name=inet-address,value="${jboss.bind.address.management:0.0.0.0}")
+/interface=management/:write-attribute(name=inet-address,value="${jboss.bind.address.management:0.0.0.0}")
+/subsystem=undertow/server=default-server/host=default-host/setting=access-log:\
+  add(pattern="%h %t \"%r\" %s \"%{i,User-Agent}\"", use-server-log=true)
+/subsystem=logging/size-rotating-file-handler=rhefos:add(level=WARN, file={"relative-to"=>"jboss.server.log.dir", "path"=>"rhefos.log"}, append=false, autoflush=true)
+/subsystem=logging/size-rotating-file-handler=rhefos:write-attribute(name="rotate-size", value="50M")
+/subsystem=logging/logger=VTM:add(use-parent-handlers=false,handlers=["rhefos"])
+/subsystem=logging/logger=VTM:write-attribute(name=level,value=WARN)
+/subsystem=logging/logger=TRMCALL:add(use-parent-handlers=false,handlers=["rhefos"])
+/subsystem=logging/logger=TRMCALL:write-attribute(name=level,value=WARN)
+/subsystem=logging/logger=TRM:add(use-parent-handlers=false,handlers=["rhefos"])
+/subsystem=logging/logger=TRM:write-attribute(name=level,value=WARN)
+run-batch
