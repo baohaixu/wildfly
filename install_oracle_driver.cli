@@ -1,0 +1,3 @@
+connect
+module add --name=com.oracle.ojdbc  --module-root-dir=wildfly/modules/system/layers/base/ --resources=ojdbc8.jar --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=ojdbc8:add(driver-name=ojdbc8,driver-module-name=com.oracle.ojdbc)
